@@ -45,11 +45,12 @@ GIDSignInUIDelegate {
         let credential = FIRGoogleAuthProvider.credentialWithIDToken(authentication.idToken,
                                                                      accessToken: authentication.accessToken)
         FIRAuth.auth()?.signInWithCredential(credential) { (user, error) in
-            // ...
             if let error = error {
                 print(error.localizedDescription)
             } else {
-                self.performSegueWithIdentifier("WelcomeSegue", sender: nil)
+                let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                appDelegate.logIn()
+                
             }
         }
     }

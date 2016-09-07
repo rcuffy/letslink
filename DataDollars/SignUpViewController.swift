@@ -11,19 +11,22 @@ import Firebase
 import FirebaseDatabase
 
 class SignUpViewController: UIViewController {
-    var ref: FIRDatabaseReference?
     
     
+    @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
+    lazy var ref: FIRDatabaseReference = FIRDatabase.database().reference()
     @IBAction func createAccountButton(sender: UIButton) {
         FIRAuth.auth()?.createUserWithEmail(emailField.text!,  password: passwordField.text!, completion: { (user, error) in
             if error != nil {
                 print(error?.localizedDescription)
             }
             else{
-                print("User Created!")
-                self.ref?.child("testing").setValue(123)
+                
+                self.ref.child("users").child((user?.uid)!).child("username").setValue(self.usernameField.text!)
+                self.performSegueWithIdentifier("CreateAccount", sender: self)
+
             }
         })
     }
@@ -31,11 +34,6 @@ class SignUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        ref = FIRDatabase.database().reference()
-        ref?.child("users").setValue("Rena")
-        ref?.child("Organizations").setValue(["EPA Jr. Golf", "Live In Peace"])
-            
-        
         // Do any additional setup after loading the view, typically from a nib.
  
         

@@ -1,0 +1,6 @@
+framework module Pods_DataDollarsUITests {
+  umbrella header "Pods-DataDollarsUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

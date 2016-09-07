@@ -30,7 +30,9 @@ class LogInViewController: UIViewController {
                 print(error?.localizedDescription)
             }
             else{
-                print("User Logged In!")
+                let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                appDelegate.logIn()
+
             }
         }
         

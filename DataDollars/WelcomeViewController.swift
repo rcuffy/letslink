@@ -11,7 +11,7 @@ import Firebase
 
 
 class WelcomeViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 //        title = "Welcome, \(FIRAuth.auth()?.currentUser?.displayName)"
@@ -24,6 +24,10 @@ class WelcomeViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func signOutTapped(sender: UIBarButtonItem) {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.signOut()
+    }
 
     /*
     // MARK: - Navigation
